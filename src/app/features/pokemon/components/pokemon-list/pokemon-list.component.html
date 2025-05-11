@@ -1,1 +1,6 @@
-<p class="pokemon-title">pokemon-list works!</p>
+<div class="pokemon-grid">
+  <div class="pokemon-card" *ngFor="let p of pokemons">
+    <img [src]="spriteUrl(p.id)" [alt]="p.name" />
+    <h3>{{ p.name | titlecase }}</h3>
+  </div>
+</div>
