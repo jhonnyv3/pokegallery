@@ -1,59 +1,58 @@
-# Pokegallery
+# PokéGallery
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
+Listado, búsqueda y detalle de pokemones usando Angular + Angular Material + RxJS + PokeAPI.
 
-## Development server
+Una app moderna, responsiva y optimizada que permite visualizar, buscar y explorar pokemones con una interfaz tipo galía y detalle enriquecido.
 
-To start a local development server, run:
+---
+
+## Arquitectura
+
+Este proyecto sigue una arquitectura basada en Feature Modules con componentes standalone introducidos en Angular 15+. Se organiza en carpetas por funcionalidad (features), con separation of concerns y nombres consistentes.
+
+### Componentes principales
+
+- `PokemonPageComponent`: componente orquestador principal. Divide la pantalla en dos columnas:
+  - Izquierda: listado de pokemones (con buscador integrado)
+  - Derecha: panel flotante que muestra el detalle del pokémon seleccionado (en desktop)
+
+- `PokemonListComponent`: recibe la lista de pokemones y emite el evento `(selectPokemon)` al hacer click en uno de ellos.
+
+- `PokemonDetailComponent`: muestra el detalle completo del pokemón con su imagen, tipos, altura, peso, habilidades y stats base. Se activa desde el componente padre y recibe el objeto `PokemonDetail` por `@Input()`.
+
+### Servicio
+
+- El `PokemonService` expone:
+  - `getPokemonList(limit, offset)`: obtiene la lista paginada desde `/pokemon` (pero esta respuesta no incluye imágenes).
+  - `getPokemonDetail(idOrName)`: obtiene los detalles individuales desde `/pokemon/:id`
+  - `getPokemonListWithDetails()`: usa `forkJoin` y `switchMap` para combinar ambos. Una vez obtenida la lista de nombres, se lanzan múltiples llamadas a detalle y se combina todo en un solo Observable.
+
+### Memoización y performance
+
+- Todas las respuestas se memoizan en memoria con `Map` y `shareReplay(1)` para evitar repeticiones innecesarias.
+- Además, se almacena en `localStorage` para mejorar la experiencia en visitas repetidas.
+
+---
+
+## Instalación y uso
 
 ```bash
+git clone https://github.com/jhonnyv3/pokegallery.git
+cd pokegallery
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Abrir en navegador:
 
 ```bash
-ng generate component component-name
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+o acceder directamente desde GitHub Pages:
 
-```bash
-ng generate --help
-```
+🔗 [https://jhonnyv3.github.io/pokegallery](https://jhonnyv3.github.io/pokegallery)
 
-## Building
+---
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+> Proyecto realizado como ejercicio técnico de Angular: pokegallery 🎯

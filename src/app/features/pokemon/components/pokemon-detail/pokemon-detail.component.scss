@@ -1,0 +1,86 @@
+.detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.card-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.card-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.card-image img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  display: block;
+  margin: 1rem auto;
+}
+
+.card-info p {
+  margin: 0.4rem 0;
+}
+
+.stats {
+  margin-top: 1rem;
+
+  .stat {
+    margin-bottom: 0.5rem;
+
+    label {
+      font-size: 0.85rem;
+    }
+
+    .stat-bar {
+      background: #e0e0e0;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.2rem;
+
+      .stat-fill {
+        background: #4caf50;
+        height: 100%;
+        transition: width 0.4s ease;
+      }
+    }
+  }
+}
+
+.side-illustration {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 300px;
+    opacity: 0.4;
+  }
+}
+
+.type-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

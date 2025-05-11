@@ -1,2 +1,19 @@
-<h1 class="pokemon-title tcenter">Pokemon gallery</h1>
-<app-pokemon-list [pokemons]="pokemonList"></app-pokemon-list>
+<div>
+  <h1 class="pokemon-title tcenter">Pokemon gallery</h1>
+</div>
+
+<div class="page-container">
+  <div class="list-column">
+    <app-pokemon-list
+      [pokemons]="pokemonList"
+      (selectPokemon)="selectPokemon($event)"
+    ></app-pokemon-list>
+  </div>
+
+  <div class="detail-column" *ngIf="pokemonSelected">
+    <app-pokemon-detail
+      [pokemon]="pokemonSelected"
+      (close)="cerrarDetalle()"
+    ></app-pokemon-detail>
+  </div>
+</div>

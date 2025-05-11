@@ -1,0 +1,20 @@
+.page-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+
+  .list-column {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .detail-column {
+    width: 400px;
+    max-width: 100%;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+    position: relative;
+  }
+}

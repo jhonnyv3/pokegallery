@@ -1,1 +1,51 @@
-<p>pokemon-detail works!</p>
+<div class="detail-container" *ngIf="pokemon">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-toolbar">
+        <h1>#{{ pokemon.id }} {{ pokemon.name | titlecase }}</h1>
+        <button mat-icon-button (click)="close.emit()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div class="type-chips">
+        <mat-chip
+          *ngFor="let t of pokemon.types"
+          color="primary"
+          selected
+        >
+          {{ t.type.name }}
+        </mat-chip>
+      </div>
+    </div>
+
+    <div class="card-image">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+    </div>
+
+    <div class="card-info">
+      <p><strong>Altura:</strong> {{ pokemon.height / 10 }} m</p>
+      <p><strong>Peso:</strong> {{ pokemon.weight / 10 }} kg</p>
+
+      <div>
+        <strong>Habilidades:</strong>
+        <ul>
+          <li *ngFor="let a of pokemon.abilities">
+            {{ a.ability.name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="stats">
+        <h3>Estadísticas base</h3>
+        <div class="stat" *ngFor="let s of pokemon.stats">
+          <label>{{ s.stat.name }}</label>
+          <div class="stat-bar">
+            <div
+              class="stat-fill"
+              [style.width.%]="s.base_stat > 100 ? 100 : s.base_stat"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

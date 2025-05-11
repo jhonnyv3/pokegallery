@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, shareReplay, forkJoin, switchMap, catchError, throwError, tap, of  } from 'rxjs';
 import { PokemonListResponse, PokemonDetail } from '../models/pokemon.model';
-import { PokeEndpoints } from '../../../core/constants/poke-endpoints';
+import { PokeEndpoints } from '@core/constants/poke-endpoints';
 
 @Injectable({
   providedIn: 'root'
