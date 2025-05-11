@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonDetail } from '@features/pokemon/models/pokemon.model';
 import { PokeEndpoints } from '@core/constants/poke-endpoints';
@@ -27,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class PokemonListComponent implements OnInit {
   @Input() pokemons: PokemonDetail[] = [];
+  @Output() selectPokemon = new EventEmitter<PokemonDetail>();
   filter = '';
 
   ngOnInit(): void {
@@ -48,4 +49,7 @@ export class PokemonListComponent implements OnInit {
     }
   }
 
+  emitSelected(pokemon: PokemonDetail): void {
+    this.selectPokemon.emit(pokemon);
+  }
 }

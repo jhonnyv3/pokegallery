@@ -12,7 +12,10 @@
 
 
 <div class="pokemon-grid">
-  <mat-card class="pokemon-card" *ngFor="let po of pokemons| filterByName: filter">
+  <mat-card
+    class="pokemon-card"
+    *ngFor="let po of pokemons| filterByName: filter"
+    (click)="emitSelected(po)">
     <img
       mat-card-image
       [src]="spriteUrl(po.id)"
