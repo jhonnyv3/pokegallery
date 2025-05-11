@@ -1,1 +1,26 @@
-<p class="pokemon-title">pokemon-list works!</p>
+<mat-toolbar color="primary" class="toolbar-search">
+  <mat-form-field class="search-box">
+    <mat-label>Buscar Pokémon</mat-label>
+    <input
+      matInput
+      [(ngModel)]="filter"
+      placeholder="Escribe un nombre..."
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</mat-toolbar>
+
+
+<div class="pokemon-grid">
+  <mat-card class="pokemon-card" *ngFor="let po of pokemons| filterByName: filter">
+    <img
+      mat-card-image
+      [src]="spriteUrl(po.id)"
+      [alt]="po.name"
+      (error)="onImageError($event)"
+    />
+    <mat-card-content>
+      <h3>{{ po.name | titlecase }}</h3>
+    </mat-card-content>
+  </mat-card>
+</div>
