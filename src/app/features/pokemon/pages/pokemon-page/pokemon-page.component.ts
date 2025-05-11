@@ -2,10 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { PokemonListResponse, PokemonDetail } from '../../models/pokemon.model';
+import { PokemonListComponent } from '@features/pokemon/components/pokemon-list/pokemon-list.component';
 
 @Component({
   selector: 'app-pokemon-page',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    PokemonListComponent
+  ],
   templateUrl: './pokemon-page.component.html',
   styleUrl: './pokemon-page.component.scss'
 })
